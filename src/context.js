@@ -4,7 +4,7 @@ import reducer from './reducer';
 
 const AppContext = React.createContext();
 
-const API_ENDPOINT = "http://demo1657997.mockable.io/products";
+const API_ENDPOINT = "https://demo1657997.mockable.io/products";
 
 const getProductsCart = () => {
     const data = localStorage.getItem('productCart');
