@@ -26,6 +26,10 @@ const SingleProductProductsPage = ({product}) => {
             indexSize: indexSize
         }
         localStorage.setItem('cartItem',JSON.stringify(cartItem))
+        
+    }
+    const handleReload = () => {
+        Location.reload();
     }
 
     return (
@@ -64,7 +68,7 @@ const SingleProductProductsPage = ({product}) => {
                                     ({votes})
                                 </div>
                             </div>
-                            <a href={`/product/${id}`} className='wrap-img-link-product'>
+                            <Link to={`/product/${id}`} className='wrap-img-link-product' onClick={() => handleReload()}>
                                 <img className='img-first' src={img[0]} alt={color}/>
                                 <img className='img-swap' src={img[1]} alt={color} onClick={() => handleOnClick(index,0)}/>
                                 <div className='wrap-sizes'>
@@ -75,7 +79,7 @@ const SingleProductProductsPage = ({product}) => {
                                             )
                                     })}
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                         <div className='product-item-content'>
                             <div className='margin-top__1rem'>

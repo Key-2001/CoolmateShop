@@ -24,6 +24,9 @@ const Navbar = () => {
     //     };
     // },[])
 
+    const handleClick = () => {
+        Location.reload();
+    }
 
     return (
         <header id='nav' >
@@ -210,18 +213,18 @@ const Navbar = () => {
                                     <div className='wrap-nav-sub'>
                                         <h5>coolmate</h5>
                                         <div className='wrap-child'>
-                                            <a href='/about/1'>
+                                            <Link to='/about/1' onClick={() => handleClick()}>
                                                 <img src='https://mcdn.coolmate.me/uploads/December2021/Copy_of_2-14_1_(1).jpg' alt='Câu truyện'/>
                                                 <span>câu chuyện</span>
-                                            </a>
-                                            <a href='/about/2'>
+                                            </Link>
+                                            <Link to='/about/2' onClick={() => handleClick()}>
                                                 <img src='https://mcdn.coolmate.me/uploads/December2021/3-2_1_(2)_(1).jpg' alt='Dịch vụ'/>
                                                 <span>Dịch vụ 100% hài lòng</span>
-                                            </a>
-                                            <a href='/about/3'>
+                                            </Link>
+                                            <Link to='/about/3' onClick={() => handleClick()}>
                                                 <img src='https://mcdn.coolmate.me/uploads/December2021/Copy_of_2-4_1_(2)_(1).jpg' alt='Coolmate dich vụ'/>
                                                 <span>Coolclub - Khách hàng thân thiện</span>
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
