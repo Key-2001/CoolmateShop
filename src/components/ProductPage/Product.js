@@ -30,7 +30,7 @@ const Product = () => {
                         </div>
                     </div>
                     <div className='wrap-other-filter'>
-                        <form className='filter-select-item'>
+                        {/* <form className='filter-select-item'>
                             <label htmlFor='size'>Kích cỡ</label>
                             <select id='size'  name='size' className='size-filter' onChange={(e) => setSizeFilter(e.target.value)} value={sizeFilter}>
                                 <option value='all'>Tất cả</option>
@@ -42,7 +42,7 @@ const Product = () => {
                                 <option value='2XL'>2XL</option>
                                 <option value='3XL'>3XL</option>
                             </select>
-                        </form>
+                        </form> */}
                         <form className='filter-select-item'>
                             <label htmlFor='type'>Nhóm sản phẩm</label>
                             <select id='type'  name='type' className='type-filter' onChange={(e) => setTypeClothes(e.target.value)} value={typeClothes}>

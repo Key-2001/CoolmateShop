@@ -6,6 +6,10 @@ const About = () => {
     const [param,setParam] = useState(id);
     // console.log(param)
     
+    // useEffect(() => {
+    //     Location.reload();
+    // },[param])
+
     if(parseInt(param.id) === 1){
 
         return(
