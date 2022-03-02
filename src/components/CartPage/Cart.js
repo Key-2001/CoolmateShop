@@ -133,7 +133,7 @@ const Cart = () => {
         if(name !== ''){
             setErrName(() => {
                 return{
-                    isErr:'false',
+                    isErr:false,
                     message:''
                 }
             })
@@ -152,17 +152,7 @@ const Cart = () => {
             phoneInput.classList.remove('is-err')
         }
         
-        // email
-        if(email !== ''){
-            setErrEmail(() => {
-                return{
-                    isErr:false,
-                    message:''
-                }
-            })
-            let emailInput = document.querySelector('#email-employ');
-            emailInput.classList.remove('is-err')
-        }
+
         // address
         if(address !== ''){
             setErrAddress(() => {
@@ -183,7 +173,20 @@ const Cart = () => {
                 }
             })
         }
-    },[name,phone,email,address,payment])
+    },[name,phone,address,payment])
+
+    useEffect(() => {
+        if(email !== ''){
+            setErrEmail(() => {
+                return{
+                    isErr:false,
+                    message:''
+                }
+            })
+            let emailInput = document.querySelector('#email-employ');
+            emailInput.classList.remove('is-err')
+        }
+    },[email])
 
     return (
         <section className='screen-default cart-page'>

@@ -156,6 +156,32 @@ const reducer = (state,action) => {
                 }
             }
         }
+        case 'SET_ACCOUNT':{
+            return{
+                ...state,
+                accounts: [...state.accounts,action.payload]
+            }
+        }
+        case 'SET_CURRENT_USER':{
+            return{
+                ...state,
+                currentUser: action.payload
+            }
+        }
+        case 'CHANGE_ACCOUNT':{
+            let tempAccounts = state.accounts.map((account,index) => {
+                if(account.phone === action.payload.data.phone){
+                    return {...account,address:action.payload.data.address,name: action.payload.data.name,password: action.payload.pass,passwordChecked: action.payload.pass}
+                }
+                return account
+            })
+            
+            return{
+                ...state,
+                accounts: tempAccounts,
+                currentUser: {...state.currentUser,name:action.payload.data.name,address:action.payload.data.address,password:action.payload.pass,passwordChecked: action.payload.pass}
+            }
+        }
         default: return state;
     }
 

@@ -10,7 +10,14 @@ const getProductsCart = () => {
     const data = localStorage.getItem('productCart');
     return data ? JSON.parse(data) : [];
 }
-
+const getAccounts = () => {
+    const data = localStorage.getItem('accounts');
+    return data ? JSON.parse(data) : []
+}
+const getCurrentUser = () => {
+    const data = localStorage.getItem('currentUser');
+    return data ? JSON.parse(data) : {}
+}
 const initialState = {
     isLoading: false,
     products:[],
@@ -23,10 +30,13 @@ const initialState = {
         bonusNote:'',
         payment:''
     },
+    // account
+    accounts: getAccounts(),
     productsCart: getProductsCart(),
     amountCart:0,
     shipPricing: 25000,
     totalPricing:0,
+    currentUser: getCurrentUser()
 }
 
 
@@ -40,7 +50,10 @@ const getCartItem = () => {
     const data = localStorage.getItem('cartItem');
     return data ? JSON.parse(data) : {} ;
 }
-
+const getIsUser = () => {
+    const data = localStorage.getItem('isUser');
+    return data ? JSON.parse(data) : false
+}
 
 
 const AppProvider = ({children}) => {
@@ -54,7 +67,14 @@ const AppProvider = ({children}) => {
     const [sizeFilter,setSizeFilter] = useState('all')
     const [cartItem,setCartItem] = useState(getCartItem());
     const [isNotify,setIsNotify] = useState(false);
-
+    const [isLoginPage,setIsLoginPage] = useState({isLogin:false,
+                                                isRegister:false,
+                                                isForgotPass:false});
+    
+    const [isRegisterNotify,setIsRegisterNotify] = useState(false);          
+    const [isUser,setIsUser] = useState(getIsUser())         
+    
+    console.log(typeof isUser)
     // fetch api
     const fetchData = async (url) => {
         dispatch({type:'SET_LOADING'});
@@ -227,11 +247,56 @@ const AppProvider = ({children}) => {
         dispatch({type:'SET_PAYMENT_EMPLOY',payload:data})
     }
     
+    // accounts
 
+    const handleAddAccount = (data) => {
+        let isAdd = true;
+        state.accounts.forEach((item,index) => {
+            console.log(data.phone,item.phone)
+            if(data.phone===item.phone || data.phone.length!==10){
+                isAdd = false
+            }
+        })
+        if(isAdd && state.accounts.length!==0){
+            dispatch({type:'SET_ACCOUNT',payload:data})
+            setIsRegisterNotify(true);
+        }
+        if(state.accounts.length===0 && data.phone.length===10){
+            dispatch({type:'SET_ACCOUNT',payload:data})
+            setIsRegisterNotify(true)
+        }
+    }
+
+    const handleCheckLogin = (data) => {
+        state.accounts.forEach((item,index) => {
+            if(item.phone === data.phone){
+                if(item.password === data.password){
+                    dispatch({type:'SET_CURRENT_USER',payload:item})
+                    setIsUser(true)
+                    localStorage.setItem('isUser',JSON.stringify(true))
+                    localStorage.setItem('currentUser',JSON.stringify(item))
+
+                }
+            }
+        })
+    }
+
+    const handleChangeAccount = (data,pass) => {
+        console.log(pass)
+        dispatch({type:'CHANGE_ACCOUNT',payload:{data,pass}})
+    }
+
+    useEffect(() => {
+        localStorage.setItem('accounts',JSON.stringify(state.accounts));
+    },[state.accounts])
+    useEffect(() => {
+        localStorage.setItem('currentUser',JSON.stringify(state.currentUser))
+    },[state.currentUser])
     return(
         <AppContext.Provider value={{...state,isNotify,setIsNotify,queryTemp,setQueryTemp,sortType,setSortType,typeClothes,setTypeClothes,cartItem,setCartItem,
                                     sizeFilter,setSizeFilter,handleAddCartItem,toggleAmount,removeItemCart,handleChangeColorCartItem,handleChangeSizeCartItem,
-                                    handleSetName,handleSetPhone,handleSetEmail,handleSetAddress,handleSetNote,handleSetPayment}}>{children}</AppContext.Provider>
+                                    handleSetName,handleSetPhone,handleSetEmail,handleSetAddress,handleSetNote,handleSetPayment,isLoginPage,setIsLoginPage,handleAddAccount,
+                                    isRegisterNotify,setIsRegisterNotify,handleCheckLogin,isUser,handleChangeAccount}}>{children}</AppContext.Provider>
     )
 }
 

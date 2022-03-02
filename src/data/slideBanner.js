@@ -10,5 +10,9 @@ export const slideBanner = [
     {
         id:3,
         img:'https://mcdn2-coolmate.cdn.vccloud.vn/uploads/January2022/web_(5).jpg'
+    },
+    {
+        id:4,
+        img:'https://mcdn2-coolmate.cdn.vccloud.vn/uploads/February2022/polo-desktop.jpg'
     }
 ]

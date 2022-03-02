@@ -10,15 +10,19 @@ import Cart from "./components/CartPage/Cart";
 import Story from "./pages/About/Story";
 import Service from "./pages/About/Service";
 import Customer from "./pages/About/Customer";
-// import Notify from "./components/Notify/Notify";
+import Notify from "./components/Notify/Notify";
+import Login from "./components/LoginPage/Login";
+import Account from "./components/LoginPage/Account";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar/>
-      {/* <Notify/> */}
+      <Notify/>
+      <Login/>
       <Routes>
         <Route exact path='/' element={<Home/>}/>
+        <Route path='/account' element={<Account/>}/>
         <Route path='/about/story' element={<Story/>}/>
         <Route path='/about/service' element={<Service/>}/>
         <Route path='/about/customer' element={<Customer/>}/>

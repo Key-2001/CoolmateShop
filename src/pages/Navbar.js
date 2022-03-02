@@ -4,7 +4,7 @@ import {FaBars} from 'react-icons/fa'
 import { useGlobalContext } from '../context'
 
 const Navbar = () => {
-    const {amountCart} = useGlobalContext();
+    const {amountCart,setIsLoginPage,isUser} = useGlobalContext();
 
     // const handleScroll = (e) => {
     //     const nav = document.getElementById('nav');
@@ -40,9 +40,9 @@ const Navbar = () => {
                         <FaBars/>
                     </div>
                     <div className='nav-logo'>
-                        <a href='/'>
+                        <Link to='/'>
                             <img src='https://www.coolmate.me/images/logo-coolmate.svg' alt='logo'/>
-                        </a>
+                        </Link>
                     </div>
                     <div className='nav-menu'>
                         <ul id='menu-list'>
@@ -237,10 +237,22 @@ const Navbar = () => {
                                 <img src='https://www.coolmate.me/images/header/icon-search.svg' alt='search-icon'/>
                             </a>
                         </div>
-                        <div className='button-actions-nav'>
-                            <a href='#'>
-                                <img src='https://www.coolmate.me/images/header/icon-account.svg' alt='login-icon'/>
-                            </a>
+                        <div className='button-actions-nav' >
+                            {!isUser && 
+                                <a href='#' onClick={() => setIsLoginPage((prev) => {
+                                    return{
+                                        ...prev,
+                                        isLogin:true
+                                    }
+                                })}>
+                                    <img src='https://www.coolmate.me/images/header/icon-account.svg' alt='login-icon'/>
+                                </a>
+                            }
+                            {isUser && 
+                                <Link to='/account'>
+                                    <img src='https://www.coolmate.me/images/header/icon-account.svg' alt='login-icon'/>
+                                </Link>
+                            }
                         </div>
                         <div className='button-actions-nav'>
                             <Link to='/cart'>

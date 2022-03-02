@@ -2620,6 +2620,252 @@ input[type='radio']:checked:after {
   font-size: 14px;
 }
 
+/* login page */
+.login-wrap{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: var(--transition);
+  z-index: 100;
+}
+.background-login{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.7);
+}
+.login-content{
+  position: absolute;
+  width: 42%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  max-height: 95vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.login-content .btn-close{
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  right: 15px;
+  transition: var(--transition);
+}
+.btn-close:hover{
+  transform: scale(1.2);
+}
+.form-login{
 
+}
+.header-form{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
 
+.header-form h3,
+.header-form h5{
+  text-align: center;
+  text-transform: unset;
+  font-weight: 700;
+}
+.header-form h5{
+  color: #2f5acf;
+  font-weight: 500;
+}
+.form-item-login{
+  margin-bottom: 1rem;
+}
+.form-item-login input{
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 16px;
+  height: 40px;
+  padding: 5px 20px;
+  transition: var(--transition);
+}
+.btn-login{
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  height: 40px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-login:hover{
+  background-color: #d9d9d9;
+  color: #000;
+}
 
+.login-or-divider{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+
+}
+.login-or-divider::before,
+.login-or-divider::after{
+  content: '';
+  height: 1px;
+  flex: 1;
+  background-color: #ebebeb;
+}
+.login-provider-facebook,
+.login-provider-google{
+  width: 100%;
+  height: 40px;
+  background-color: #3B5998;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.login-provider-content{
+  font-size: 14px;
+}
+.login-provider-img{  
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
+.login-provider-img img{
+  height: 18px;
+}
+.login-provider-google{
+  background-color: transparent;
+  color: #231f20;
+  border: 1px solid #ccc;
+}
+.other-option{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.other-option a{
+  font-size: 14px;
+  color: #2f5acf;
+}
+.other-option-register{
+  justify-content: center;
+}
+/* account page */
+.account-page{
+  margin-top: 125px;
+}
+.account-page-wrap{
+  display: flex;
+  margin-bottom: 3rem;
+}
+.sidebar-account-wrap{
+  width: 33.33333%;
+  padding-left:1rem;
+  margin-top: 2rem;
+  
+}
+.sidebar-account{
+  padding: 0 1rem;
+  border-right: 1px solid #d9d9d9;
+
+}
+.content-account{
+  width: 66.66666%;
+  padding: 0 1rem;
+  margin-top: 2rem;
+}
+.sidebar-account h3,
+.info-account h3{
+  margin-bottom: 1.5rem;
+  text-transform: unset;
+  letter-spacing: unset;
+}
+.option-account{
+
+}
+.sidebar-account-item{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 10px 20px;
+  border: 1px solid #000;
+  cursor: pointer;
+  font-size: 14px;
+  transition: var(--transition);
+}
+.sidebar-account-item:last-child{
+  margin-bottom: 0;
+}
+.sidebar-account-item.is-active{
+  background-color: #000;
+  color: #fff;
+}
+.sidebar-account-item:hover{
+  background-color: #d9d9d9;
+  color: #000;
+}
+.info-account-item{
+  display: flex;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+.title-info{
+  width: 25%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.content-info{
+  width: 60%;
+}
+.content-info input{
+  height: 40px;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 16px;
+  font-size: 14;
+  background-color: #fff;
+  padding: 10px 20px;
+}
+.pass-toggle{
+  color: #2f5acf;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+.info-account-btn button{
+  height: 40px;
+  padding: 0 30px;
+  border-radius: 16px;
+  border: none;
+  background-color: #2f5acf;
+  color: #fff;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+.info-account-btn button:hover{
+  background-color: #000;
+}
+.wrap-toggle{
+  transition: var(--transition);
+}
+.wrap-toggle .info-account-item{
+  margin-bottom: 2rem;
+}
