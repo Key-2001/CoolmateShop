@@ -213,18 +213,18 @@ const Navbar = () => {
                                     <div className='wrap-nav-sub'>
                                         <h5>coolmate</h5>
                                         <div className='wrap-child'>
-                                            <Link to='/about/story'>
+                                            <a href='/about/story'>
                                                 <img src='https://mcdn.coolmate.me/uploads/December2021/Copy_of_2-14_1_(1).jpg' alt='Câu truyện'/>
                                                 <span>câu chuyện</span>
-                                            </Link>
-                                            <Link to='/about/service'>
+                                            </a>
+                                            <a href='/about/service'>
                                                 <img src='https://mcdn.coolmate.me/uploads/December2021/3-2_1_(2)_(1).jpg' alt='Dịch vụ'/>
                                                 <span>Dịch vụ 100% hài lòng</span>
-                                            </Link>
-                                            <Link to='/about/customer'>
+                                            </a>
+                                            <a href='/about/customer'>
                                                 <img src='https://mcdn.coolmate.me/uploads/December2021/Copy_of_2-4_1_(2)_(1).jpg' alt='Coolmate dich vụ'/>
                                                 <span>Coolclub - Khách hàng thân thiện</span>
-                                            </Link>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -249,15 +249,15 @@ const Navbar = () => {
                                 </a>
                             }
                             {isUser && 
-                                <Link to='/account'>
+                                <a href='/account'>
                                     <img src='https://www.coolmate.me/images/header/icon-account.svg' alt='login-icon'/>
-                                </Link>
+                                </a>
                             }
                         </div>
                         <div className='button-actions-nav'>
-                            <Link to='/cart'>
+                            <a href='/cart'>
                                 <img src='https://www.coolmate.me/images/header/icon-cart.svg' alt='cart-icon'/>
-                            </Link>
+                            </a>
                             <span className='counts-cart'>{amountCart}</span>
                         </div>
                     </div>

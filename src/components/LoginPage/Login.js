@@ -4,7 +4,7 @@ import { useGlobalContext } from '../../context'
 
 const Login = () => {
 
-    const {isLoginPage,setIsLoginPage,handleAddAccount,accounts,isRegisterNotify,setIsRegisterNotify,handleCheckLogin,isUser} = useGlobalContext();
+    const {isLoginPage,setIsLoginPage,handleAddAccount,accounts,isRegisterNotify,setIsRegisterNotify,handleCheckLogin,isUser,handleChangePassword} = useGlobalContext();
     // register
     const [account,setAccount] = useState({name:'',
                                             phone:'',
@@ -21,7 +21,12 @@ const Login = () => {
     // login
     const [user,setUser] = useState({phone:'',
                                     password:''})
-    
+    // forgot
+    const [forgotPass,setForgotPass] = useState({phone:'',
+                                                newPass:'',
+                                                newPassChecked:''})
+
+
     const handleErrFormPhone = (data) => {
         setIsRegisterNotify(false)
         let arr = data.split('');
@@ -221,7 +226,7 @@ const Login = () => {
         setIsRegisterNotify(false)
     },[account])
     
-    const checkPhone = (data) => {
+    const checkPhone = (data,id) => {
         let arr = data.split('');
         arr.forEach((item,index) => {
             let temp =  parseInt(item);
@@ -234,7 +239,7 @@ const Login = () => {
                         message:'Số điện thoại không hợp lệ!',
                     }
                 })
-                let phoneInput = document.querySelector('#phone-login');
+                let phoneInput = document.querySelector(`#${id}`);
                 phoneInput.classList.add('is-err')
             }
         })
@@ -245,32 +250,34 @@ const Login = () => {
                         message:'Số điện thoại không hợp lệ!',
                     }
                 })
-            let phoneInput = document.querySelector('#phone-login');
+            let phoneInput = document.querySelector(`#${id}`);
             phoneInput.classList.add('is-err')
         }
         // check account
-        if(accounts.length === 0){
+        else if(accounts.length === 0){
             setErrPhone(() => {
                     return{
                         isErr:true,
                         message:'Số điện thoại không tồn tại!',
                     }
                 })
-            let phoneInput = document.querySelector('#phone-login');
+            let phoneInput = document.querySelector(`#${id}`);
             phoneInput.classList.add('is-err')
         }
-        accounts.forEach((item,index) => {
-            if(item.phone !== data){
-                setErrPhone(() => {
-                    return{
-                        isErr:true,
-                        message:'Số điện thoại không tồn tại!',
-                    }
-                })
-            let phoneInput = document.querySelector('#phone-login');
-            phoneInput.classList.add('is-err')
-            }
-        })
+        else{
+            accounts.forEach((item,index) => {
+                if(item.phone !== data){
+                    setErrPhone(() => {
+                        return{
+                            isErr:true,
+                            message:'Số điện thoại không tồn tại!',
+                        }
+                    })
+                let phoneInput = document.querySelector(`#${id}`);
+                phoneInput.classList.add('is-err')
+                }
+            })
+        }
     }
     const checkPass = (data) => {
         accounts.forEach((item,index) => {
@@ -292,7 +299,7 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         // phone
-        checkPhone(user.phone);
+        checkPhone(user.phone,'phone-login');
         if(user.phone === ''){
             setErrPhone(() => {
                 return{
@@ -358,7 +365,170 @@ const Login = () => {
             })
         }
     },[isUser])
+    // handle forgot pass
 
+    const handleClickForgotPass = (e) => {
+        e.preventDefault()
+        checkPhone(forgotPass.phone,'phone-forgot');
+        if(forgotPass.phone === ''){
+            setErrPhone(() => {
+                return{
+                    isErr:true,
+                    message:'Vui lòng nhập SĐT !'
+                }
+            })
+            let phoneInput = document.querySelector('#phone-forgot');
+            phoneInput.classList.add('is-err')
+        }
+        // pass
+        if(forgotPass.newPass === ''){
+            setErrPass(() => {
+                return{
+                    isErr:true,
+                    message:'Vui lòng nhập Password mới!!'
+                }
+            })
+            let passInput = document.querySelector('#pass-forgot');
+            passInput.classList.add('is-err')
+        }
+        // check pass
+        if(forgotPass.newPass !== forgotPass.newPassChecked){
+            setErrPassChecked(() => {
+                return{
+                    isErr:true,
+                    message:'Vui lòng nhập lại Password!!'
+                }
+            })
+            let passCheckInput = document.querySelector('#passCheck-forgot');
+            passCheckInput.classList.add('is-err')
+        }
+        if(forgotPass.newPassChecked === ''){
+            setErrPassChecked(() => {
+                return{
+                    isErr:true,
+                    message:'Vui lòng nhập lại Password!!'
+                }
+            })
+            let passCheckInput = document.querySelector('#passCheck-forgot');
+            passCheckInput.classList.add('is-err')
+        }
+        if(forgotPass.phone!=='' && forgotPass.newPass!=='' && forgotPass.newPass===forgotPass.newPassChecked && errPhone.isErr===false && errPass.isErr===false && errPassChecked.isErr===false){
+            handleChangePassword(forgotPass)
+            alert('Thay đổi mật khẩu thành công!!');
+            setForgotPass((prev) => {
+            return{
+                ...prev,
+                phone:'',
+                newPass:'',
+                newPassChecked:''
+            }
+        })
+        }
+
+    }
+
+    useEffect(() => {
+        if(forgotPass.phone !== ''){
+            setErrPhone(() => {
+                return{
+                    isErr:false,
+                    message:''
+                }
+            })
+            let phoneInput = document.querySelector('#phone-forgot');
+            phoneInput.classList.remove('is-err')
+        }
+    },[forgotPass.phone])
+
+    useEffect(() => {
+        if(forgotPass.newPass !== ''){
+            setErrPass(() => {
+                return{
+                    isErr:false,
+                    message:''
+                }
+            })
+            let passInput = document.querySelector('#pass-forgot');
+            passInput.classList.remove('is-err')
+        }
+    },[forgotPass.newPass])
+
+    useEffect(() => {
+        if(forgotPass.phone !== ''){
+            setErrPassChecked(() => {
+                return{
+                    isErr:false,
+                    message:''
+                }
+            })
+            let passCheck = document.querySelector('#passCheck-forgot');
+            passCheck.classList.remove('is-err')
+        }
+    },[forgotPass.newPassChecked])
+
+    useEffect(() => {
+        setAccount((prev) => {
+            return{
+                ...prev,
+                name:'',
+                phone:'',
+                email:'',
+                password:'',
+                passwordChecked:'',
+                address:''
+            }
+        })
+        setErrName((prev) => {
+            return{
+                ...prev,
+                isErr:false,
+                message:''
+            }
+        })
+        setErrEmail((prev) => {
+            return{
+                ...prev,
+                isErr:false,
+                message:''
+            }
+        })
+        setErrPhone((prev) => {
+            return{
+                ...prev,
+                isErr:false,
+                message:''
+            }
+        })
+        setErrPass((prev) => {
+            return{
+                ...prev,
+                isErr:false,
+                message:''
+            }
+        })
+        setErrPassChecked((prev) => {
+            return{
+                ...prev,
+                isErr:false,
+                message:''
+            }
+        })
+        setUser((prev) => {
+            return{
+                ...prev,
+                phone:'',
+                password:''
+            }
+        })
+        setForgotPass((prev) => {
+            return{
+                ...prev,
+                phone:'',
+                newPass:'',
+                newPassChecked:''
+            }
+        })
+    },[isLoginPage])
 
     return (
     <>
@@ -562,17 +732,38 @@ const Login = () => {
                             <h3>Lấy lại mật khẩu</h3>
                         </div>
                         <div  className='form-item-login'>
-                            <input type='text' placeholder='SĐT của bạn' name='phone'/>
+                            <input id='phone-forgot' type='text' placeholder='SĐT của bạn' name='phone' value={forgotPass.phone} onInput={(e) => setForgotPass((prev) => {
+                                return{
+                                    ...prev,
+                                    phone: e.target.value
+                                }
+                            })}/>
+                            {errPhone.isErr && <span className='err'>{errPhone.message}</span>}
+
                         </div>
                         
                         <div  className='form-item-login'>
-                            <input type='password' placeholder='Mật khẩu' name='password'/>
+                            <input id='pass-forgot' type='password' placeholder='Mật khẩu' name='password' value={forgotPass.newPass} onInput={(e) => setForgotPass((prev) => {
+                                return{
+                                    ...prev,
+                                    newPass: e.target.value
+                                }
+                            })}/>
+                            {errPass.isErr && <span className='err'>{errPass.message}</span>}
+
                         </div>
                         <div  className='form-item-login'>
-                            <input type='password' placeholder='Nhập lại mật khẩu' name='password-check'/>
+                            <input id='passCheck-forgot' type='password' placeholder='Nhập lại mật khẩu' name='password-check' value={forgotPass.newPassChecked} onInput={(e) => setForgotPass((prev) => {
+                                return{
+                                    ...prev,
+                                    newPassChecked: e.target.value
+                                }
+                            })}/>
+                            {errPassChecked.isErr && <span className='err'>{errPassChecked.message}</span>}
+
                         </div>
                         <div className='form-item-login'>
-                            <button type='submit' className='btn-login'>
+                            <button type='submit' className='btn-login' onClick={(e) => handleClickForgotPass(e)}>
                                 Lấy lại mật khẩu
                             </button>
                         </div>

@@ -5,6 +5,8 @@ const Account = () => {
     const {currentUser,handleChangeAccount} = useGlobalContext();
 
     const [isInfo,setIsInfo] = useState(true)
+    const [isOrder,setIsOrder] = useState(false)
+
     const [isTogglePass,setIsTogglePass] = useState(false);
     const [curUser,setCurUser] = useState({})
     const [togglePassword,setTogglePassword] = useState({oldPass:'',
@@ -46,6 +48,16 @@ const Account = () => {
                 oldPass.classList.add('is-err')
             }
             // new pass
+            if(togglePassword.newPass === togglePassword.oldPass){
+                setErrNewPass(() => {
+                    return{
+                        isErr:true,
+                        message:'Opp!!Password mới không hợp lệ !!'
+                    }
+                })
+                let newPass = document.querySelector('#new-pass');
+                newPass.classList.add('is-err')
+            }
             if(togglePassword.newPass === ''){
                 setErrNewPass(() => {
                     return{
@@ -145,6 +157,35 @@ const Account = () => {
             }
         })
     }, [currentUser])
+
+    const handleClickInfo = () => {
+        const accountItem = document.querySelectorAll('.sidebar-account-item')
+        accountItem.forEach((item,index) => {
+            if(item.classList.contains('is-active')){
+                item.classList.remove('is-active')
+            }
+        })
+        document.querySelector('#info').classList.add('is-active');
+        setIsInfo(true);
+        setIsOrder(false);
+    }
+    const handleClickOrder = () => {
+        const accountItem = document.querySelectorAll('.sidebar-account-item')
+        accountItem.forEach((item,index) => {
+            if(item.classList.contains('is-active')){
+                item.classList.remove('is-active')
+            }
+        })
+        document.querySelector('#order').classList.add('is-active');
+        setIsInfo(false);
+        setIsOrder(true);
+    }
+
+    const handleClickLogout = () => {
+        localStorage.setItem('isUser',JSON.stringify(false))
+        localStorage.setItem('currentUser',JSON.stringify({}))
+    }
+
     return (
         <section className='screen-default account-page'>
             <div className='account-page-wrap'>
@@ -152,15 +193,15 @@ const Account = () => {
                     <div className='sidebar-account'>
                         <h3>{currentUser.name}</h3>
                         <div className='option-account'>
-                            <div className='sidebar-account-item is-active'>
+                            <div id='info' className='sidebar-account-item is-active' onClick={() => handleClickInfo()}>
                                 Thông tin cá nhân
                             </div>
-                            <div className='sidebar-account-item'>
+                            <div id='order' className='sidebar-account-item' onClick={() => handleClickOrder()}>
                                 Danh sách đơn hàng
                             </div>
-                            <div className='sidebar-account-item'>
+                            <a href='/' className='sidebar-account-item' onClick={() => handleClickLogout()}>
                                 Thoát
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -263,6 +304,11 @@ const Account = () => {
                             <div className='info-account-btn'>
                                 <button type='button' onClick={() => handleClickChangeAccount()}>Cập nhật tài khoản</button>
                             </div>
+                        </div>
+                    }
+                    {isOrder && 
+                        <div className='order-account'>
+                            <h3>Đơn hàng của bạn</h3>
                         </div>
                     }
                 </div>

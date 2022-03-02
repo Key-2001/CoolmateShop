@@ -182,6 +182,18 @@ const reducer = (state,action) => {
                 currentUser: {...state.currentUser,name:action.payload.data.name,address:action.payload.data.address,password:action.payload.pass,passwordChecked: action.payload.pass}
             }
         }
+        case 'CHANGE_PASSWORD':{
+            let tempAccounts = state.accounts.map((account,index) => {
+                if(account.phone === action.payload.phone){
+                    return{...account,password:action.payload.newPass,passwordChecked:action.payload.newPass}
+                }
+                return account
+            })
+            return{
+                ...state,
+                accounts: tempAccounts
+            }
+        }
         default: return state;
     }
 

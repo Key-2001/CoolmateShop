@@ -74,7 +74,7 @@ const AppProvider = ({children}) => {
     const [isRegisterNotify,setIsRegisterNotify] = useState(false);          
     const [isUser,setIsUser] = useState(getIsUser())         
     
-    console.log(typeof isUser)
+    
     // fetch api
     const fetchData = async (url) => {
         dispatch({type:'SET_LOADING'});
@@ -286,6 +286,10 @@ const AppProvider = ({children}) => {
         dispatch({type:'CHANGE_ACCOUNT',payload:{data,pass}})
     }
 
+    const handleChangePassword = (data) => {
+        dispatch({type:'CHANGE_PASSWORD',payload:data})
+    }
+
     useEffect(() => {
         localStorage.setItem('accounts',JSON.stringify(state.accounts));
     },[state.accounts])
@@ -296,7 +300,7 @@ const AppProvider = ({children}) => {
         <AppContext.Provider value={{...state,isNotify,setIsNotify,queryTemp,setQueryTemp,sortType,setSortType,typeClothes,setTypeClothes,cartItem,setCartItem,
                                     sizeFilter,setSizeFilter,handleAddCartItem,toggleAmount,removeItemCart,handleChangeColorCartItem,handleChangeSizeCartItem,
                                     handleSetName,handleSetPhone,handleSetEmail,handleSetAddress,handleSetNote,handleSetPayment,isLoginPage,setIsLoginPage,handleAddAccount,
-                                    isRegisterNotify,setIsRegisterNotify,handleCheckLogin,isUser,handleChangeAccount}}>{children}</AppContext.Provider>
+                                    isRegisterNotify,setIsRegisterNotify,handleCheckLogin,isUser,handleChangeAccount,handleChangePassword}}>{children}</AppContext.Provider>
     )
 }
 
