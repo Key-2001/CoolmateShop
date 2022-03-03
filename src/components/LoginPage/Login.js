@@ -116,6 +116,16 @@ const Login = () => {
             emailInput.classList.add('is-err')
         }
         // password
+        if(account.password.length<6 || account.password.length>12){
+            setErrPass(() => {
+                return{
+                    isErr:true,
+                    message:'Password phải 6-12 kí tự!!'
+                }
+            })
+            let passInput = document.querySelector('#pass-register');
+            passInput.classList.add('is-err')
+        }
         if(account.password === ''){
             setErrPass(() => {
                 return{
@@ -149,7 +159,7 @@ const Login = () => {
         }
         // add account
         
-        if(account.name!=='' && errName.isErr===false && errPhone.isErr===false && errEmail.isErr===false && errPass.isErr===false && errPassChecked.isErr===false){
+        if(account.password.length>5 && account.password.length<13 && account.name!=='' && errName.isErr===false && errPhone.isErr===false && errEmail.isErr===false && errPass.isErr===false && errPassChecked.isErr===false){
             console.log(account)
             handleAddAccount(account)
         }

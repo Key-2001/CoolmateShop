@@ -48,7 +48,7 @@ const Account = () => {
                 oldPass.classList.add('is-err')
             }
             // new pass
-            if(togglePassword.newPass === togglePassword.oldPass){
+            if(togglePassword.newPass === togglePassword.oldPass || togglePassword.newPass.length<6 || togglePassword.newPass>12){
                 setErrNewPass(() => {
                     return{
                         isErr:true,

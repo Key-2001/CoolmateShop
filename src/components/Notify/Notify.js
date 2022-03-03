@@ -40,24 +40,26 @@ const Notify = () => {
 
     return (
         <div className='notify'>
-            {cartItem && 
                 <div className='notify-wrap'>
                     <h4>Đã thêm vào giỏ hàng!</h4>
                     <div className='notify-content'>
+                            { colors && 
                                 <div className='wrap-item-notify'>
+                                    
                                     <div className='img-part-notify'>
                                         <img src={colors[indexColorsList].img[0]} alt='demo'/>
                                     </div>
+                                    
                                     <div className='info-part-notify'>
                                         <h4>{name}</h4>
                                         <span>màu: {colors[indexColorsList].color}</span>
                                         <span>{formatCash(`${price}`)}đ</span>
                                     </div>
                                 </div>
-                       
+                            }
                     </div>
                 </div>
-            }
+            
         </div>
     )
 }
