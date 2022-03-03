@@ -18,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar/>
-      <Notify/>
+      {/* <Notify/> */}
       <Login/>
       <Routes>
         <Route exact path='/' element={<Home/>}/>
