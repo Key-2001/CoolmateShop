@@ -391,6 +391,16 @@ const Login = () => {
             phoneInput.classList.add('is-err')
         }
         // pass
+        if(forgotPass.newPass.length<6 || forgotPass.newPass.length>12){
+            setErrPass(() => {
+                return{
+                    isErr:true,
+                    message:'Password mới không hợp lệ!!'
+                }
+            })
+            let passInput = document.querySelector('#pass-forgot');
+            passInput.classList.add('is-err')
+        }
         if(forgotPass.newPass === ''){
             setErrPass(() => {
                 return{
@@ -422,7 +432,7 @@ const Login = () => {
             let passCheckInput = document.querySelector('#passCheck-forgot');
             passCheckInput.classList.add('is-err')
         }
-        if(forgotPass.phone!=='' && forgotPass.newPass!=='' && forgotPass.newPass===forgotPass.newPassChecked && errPhone.isErr===false && errPass.isErr===false && errPassChecked.isErr===false){
+        if(forgotPass.newPass.length>5 && forgotPass.newPass.length<13 && forgotPass.phone!=='' && forgotPass.newPass!=='' && forgotPass.newPass===forgotPass.newPassChecked && errPhone.isErr===false && errPass.isErr===false && errPassChecked.isErr===false){
             handleChangePassword(forgotPass)
             alert('Thay đổi mật khẩu thành công!!');
             setForgotPass((prev) => {
