@@ -77,7 +77,7 @@ const Home = () => {
                     <h2>Trải nghiệm mua sắm an tâm cho nam giới</h2>
                     <p>Giá cả hợp lý - dịch vụ 100% hài lòng - tự hào sản xuất tại Việt Nam</p>
                     <div >
-                        <a href='/about/2'>Tìm hiểu thêm</a>
+                        <a href='/about/service'>Tìm hiểu thêm</a>
 
                     </div>
                 </div>
@@ -87,15 +87,15 @@ const Home = () => {
                     <marquee width='100%' direction='left' height='72px'>
                         <p><b>CoolClub</b> - Ưu đãi <b>nhiều hơn </b>,mua sắm, vui hơn. Nhận ngay <b>ưu đãi 7% </b>cho lần mua sắm đầu tiên </p>
                     </marquee>
-                    <a href='/about/3'>Gia nhập ngay</a>
+                    <a href='/about/customer'>Gia nhập ngay</a>
                 </div>
             </section>
             <section className='homepage-about-more screen-default grid-5-5'>
-                <a href='/about/1'>
+                <a href='/about/story'>
                     <img src='https://mcdn.coolmate.me/uploads/November2021/image1_59.jpg' alt='story-coolmate'/>
                     
                 </a>
-                <a href='/about/2'>
+                <a href='/about/service'>
                     <img src='https://mcdn.coolmate.me/uploads/November2021/image2.jpg' alt='story-coolmate'/>
                     
                 </a>
