@@ -20,6 +20,9 @@ const SingleProduct = () => {
     const [lengthColors,setLengthColors] = useState(0);
     const [indexSize,setIndexSize] = useState(0);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     
     const [amountSingleProduct,setAmountSingleProduct] = useState(1);
     // console.log(id);
