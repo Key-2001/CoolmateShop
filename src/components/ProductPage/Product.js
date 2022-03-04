@@ -77,6 +77,7 @@ const Product = () => {
             </div>
             <div className='wrap-products screen-default'>
                 {isLoading && <Loading/>}
+                {products.length===0 && <div className='empty-products'>Oop!! Không tìm thấy sản phẩm phù hợp!</div>}
                 {products.map((productItem,index) => {
                     const{id,name,price,colors} = productItem;
                     return(

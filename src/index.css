@@ -34,7 +34,11 @@ body {
     font-size: .875rem;
   /* letter-spacing: var(--spacing); */
 }
-
+.empty-products{
+  color: #ff2459;
+  font-size: 24px;
+  width: 100vw;
+}
 ul{
   list-style-type: none;
 }
