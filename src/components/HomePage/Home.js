@@ -1,8 +1,12 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import ProductHomePage from './ProductHomePage'
 import SlideBanner from './SlideBanner'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <>
             <div className='slide-banner-wrap'>
@@ -77,7 +81,7 @@ const Home = () => {
                     <h2>Trải nghiệm mua sắm an tâm cho nam giới</h2>
                     <p>Giá cả hợp lý - dịch vụ 100% hài lòng - tự hào sản xuất tại Việt Nam</p>
                     <div >
-                        <a href='/about/service'>Tìm hiểu thêm</a>
+                        <Link to='/about/service'>Tìm hiểu thêm</Link>
 
                     </div>
                 </div>
@@ -87,18 +91,18 @@ const Home = () => {
                     <marquee width='100%' direction='left' height='72px'>
                         <p><b>CoolClub</b> - Ưu đãi <b>nhiều hơn </b>,mua sắm, vui hơn. Nhận ngay <b>ưu đãi 7% </b>cho lần mua sắm đầu tiên </p>
                     </marquee>
-                    <a href='/about/customer'>Gia nhập ngay</a>
+                    <Link to='/about/customer'>Gia nhập ngay</Link>
                 </div>
             </section>
             <section className='homepage-about-more screen-default grid-5-5'>
-                <a href='/about/story'>
+                <Link to='/about/story'>
                     <img src='https://mcdn.coolmate.me/uploads/November2021/image1_59.jpg' alt='story-coolmate'/>
                     
-                </a>
-                <a href='/about/service'>
+                </Link>
+                <Link to='/about/service'>
                     <img src='https://mcdn.coolmate.me/uploads/November2021/image2.jpg' alt='story-coolmate'/>
                     
-                </a>
+                </Link>
             </section>
         </>
     )

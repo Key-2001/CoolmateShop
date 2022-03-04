@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../../context'
 import Loading from '../../pages/Loading';
@@ -13,6 +13,10 @@ const Product = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <section className='wrap-product-page'>
