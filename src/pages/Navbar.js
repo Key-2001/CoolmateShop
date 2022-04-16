@@ -233,31 +233,31 @@ const Navbar = () => {
                     </div>
                     <div className='nav-actions'>
                         <div className='button-actions-nav'>
-                            <a href='#'>
+                            <Link to='/'>
                                 <img src='https://www.coolmate.me/images/header/icon-search.svg' alt='search-icon'/>
-                            </a>
+                            </Link>
                         </div>
                         <div className='button-actions-nav' >
                             {!isUser && 
-                                <a href='#' onClick={() => setIsLoginPage((prev) => {
+                                <Link to='#' onClick={() => setIsLoginPage((prev) => {
                                     return{
                                         ...prev,
                                         isLogin:true
                                     }
                                 })}>
                                     <img src='https://www.coolmate.me/images/header/icon-account.svg' alt='login-icon'/>
-                                </a>
+                                </Link>
                             }
                             {isUser && 
-                                <a href='/account'>
+                                <Link to='/account'>
                                     <img src='https://www.coolmate.me/images/header/icon-account.svg' alt='login-icon'/>
-                                </a>
+                                </Link>
                             }
                         </div>
                         <div className='button-actions-nav'>
-                            <a href='/cart'>
+                            <Link to='/cart'>
                                 <img src='https://www.coolmate.me/images/header/icon-cart.svg' alt='cart-icon'/>
-                            </a>
+                            </Link>
                             <span className='counts-cart'>{amountCart}</span>
                         </div>
                     </div>

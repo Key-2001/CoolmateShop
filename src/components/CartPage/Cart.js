@@ -34,6 +34,11 @@ const Cart = () => {
         })
 
     },[payment])
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+    
     const handleErrFormPhone = (data) => {
         let arr = data.split('');
         arr.forEach((item,index) => {
