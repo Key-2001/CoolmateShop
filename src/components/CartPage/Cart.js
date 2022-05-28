@@ -132,6 +132,10 @@ const Cart = () => {
             })
             
         }
+
+        if(name!=='' && phone!=='' && address!=='' && payment!=='' && errName.isErr===false && errPhone.isErr===false && errAddress.isErr===false && errPayment.isErr===false && errEmail.isErr===false){
+            alert('Đặt hàng thành công!!!')
+        }
     }
 
     useEffect(() => {
