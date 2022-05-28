@@ -232,11 +232,11 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className='nav-actions'>
-                        <div className='button-actions-nav'>
+                        {/* <div className='button-actions-nav'>
                             <Link to='/'>
                                 <img src='https://www.coolmate.me/images/header/icon-search.svg' alt='search-icon'/>
                             </Link>
-                        </div>
+                        </div> */}
                         <div className='button-actions-nav' >
                             {!isUser && 
                                 <Link to='#' onClick={() => setIsLoginPage((prev) => {
