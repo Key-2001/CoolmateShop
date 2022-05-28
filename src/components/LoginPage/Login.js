@@ -76,7 +76,7 @@ const Login = () => {
             setErrName(() => {
                 return{
                     isErr:true,
-                    message:'Vui lòng nhập tên này!'
+                    message:'Vui lòng nhập họ tên!'
                 }
             })
             let nameInput = document.querySelector('#name-register');
@@ -88,7 +88,7 @@ const Login = () => {
             setErrPhone(() => {
                 return{
                     isErr:true,
-                    message:'Vui lòng nhập SĐT này!'
+                    message:'Vui lòng nhập SĐT!'
                 }
             })
             let phoneInput = document.querySelector('#phone-register');
