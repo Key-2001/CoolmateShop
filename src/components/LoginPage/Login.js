@@ -264,6 +264,16 @@ const Login = () => {
             phoneInput.classList.add('is-err')
         }
         // check account
+        else if(accounts.length === 0){
+            setErrPhone(() => {
+                    return{
+                        isErr:true,
+                        message:'Số điện thoại không tồn tại!',
+                    }
+                })
+            let phoneInput = document.querySelector(`#${id}`);
+            phoneInput.classList.add('is-err')
+        }
         else{
             accounts.forEach((item,index) => {
                 console.log(typeof data);
